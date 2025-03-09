@@ -17,10 +17,10 @@ def main():
         # Connect to the server
         client_sd.connect((server_ip, port))
 
-        # Define the requested file (default: index.html)
+        # Get the requested file from command line (default: index.html)
         filename = "index.html"
         if len(sys.argv) == 2:
-            filename = sys.argv[1]  # Allow filename input from command line
+            filename = sys.argv[1].split("/")[-1]  # Extract only the filename
 
         # Create the HTTP GET request
         request = f"GET /{filename} HTTP/1.1\r\nHost: {server_ip}:{port}\r\n\r\n"
