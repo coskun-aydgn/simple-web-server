@@ -44,7 +44,7 @@ def main():
     Each new client request is handled in a separate thread.
     """
     server_socket = socket(AF_INET, SOCK_STREAM)  # Create a TCP socket
-    server_ip = '127.0.0.1'  # Localhost
+    server_ip = '10.0.0.1'  # Localhost
     port = 8000  # Port where the server will listen
 
     # Bind the socket to the IP and port
