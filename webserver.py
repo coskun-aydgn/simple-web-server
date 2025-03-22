@@ -10,7 +10,7 @@ def main():
     serverSocket = socket(AF_INET, SOCK_STREAM)
 
     # Define server address and port
-    server_ip = '127.0.0.1'  # Localhost
+    server_ip = '10.0.0.1'  # Localhost
     port = 8000  # Server port
 
     # Bind the socket to the address and port
