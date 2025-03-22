@@ -50,7 +50,7 @@ webserver.py / multithreaded_webserver.py
 main()
 ------
 Starts the HTTP web server.
-- Binds to a given IP address and port (default: 127.0.0.1:8000)
+- Binds to a given IP address and port (e.g., 10.0.0.1:8000 in Mininet)
 - Listens for incoming client connections.
 - Handles each client request (multi-threaded in the advanced version).
 - Returns: None
