@@ -7,7 +7,7 @@ def main():
     """
 
     # Define server details
-    server_ip = '127.0.0.1'  # Localhost IP
+    server_ip = '10.0.0.1'  # Localhost IP
     port = 8000  # Server port
 
     # Create a TCP socket
