@@ -1,61 +1,85 @@
-# Basit Web Sunucusu ve İstemcisi
+# Basit Web Sunucusu ve İstemcisi (Türkçe Açıklama)
 
-Bu proje, Python kullanarak soket programlama ile geliştirilmiş **iki farklı HTTP web sunucusu** ve bir istemci içermektedir.
+Bu proje, Python'da soket programlaması kullanılarak yazılmış basit bir HTTP web sunucusu ve istemcisini içerir. Sunucu gelen HTTP GET isteklerine yanıt verir, istemci ise bu istekleri gönderir.
+
+---
 
 ## Özellikler
-- HTTP GET isteklerini işler.
+- Basit HTTP GET isteklerini işler.
 - Statik HTML dosyalarını sunar.
-- Eksik dosyalar için `404 Not Found` yanıtı döndürür.
-- **Tek iş parçacıklı (Single-Threaded) ve Çok iş parçacıklı (Multithreaded) sunucu versiyonları içerir.**
+- Eksik dosyalar için `404 Not Found` döner.
+- Tek iş parçacıklı ve çok iş parçacıklı (multithreaded) sürümler mevcut.
 
-## Sunucu Versiyonları
-- **Tek İş Parçacıklı Sunucu (`webserver.py`)**  
-  - Aynı anda yalnızca bir istemciye hizmet verebilir.
+---
+
+## Sunucu Sürümleri
+
+- **Tek İş Parçacıklı Sunucu (`webserver.py`)**
+  - Aynı anda yalnızca bir istemciyi işler.
   - İstekleri sırayla işler.
-- **Çok İş Parçacıklı Sunucu (`multithreaded_webserver.py`)**  
-  - Aynı anda birden fazla istemciye hizmet verebilir.
-  - **Threading** kullanarak eş zamanlı bağlantıları yönetir.
+
+- **Çok İş Parçacıklı Sunucu (`multithreaded_webserver.py`)**
+  - Aynı anda birden fazla istemciyi destekler.
+  - Her istemci için ayrı bir iş parçacığı kullanır.
+
+---
 
 ## Dosyalar
-- `webserver.py` - Aynı anda sadece bir istemciye hizmet veren basit web sunucusu.
-- `multithreaded_webserver.py` - Aynı anda birden fazla istemciyi destekleyen gelişmiş web sunucusu.
-- `webclient.py` - HTTP GET isteği gönderen istemci.
-- `index.html` - Sunucu tarafından servis edilen örnek HTML dosyası.
+- `webserver.py`: Basit tek istemcili sunucu
+- `multithreaded_webserver.py`: Çok istemcili gelişmiş sunucu
+- `webclient.py`: HTTP GET isteği gönderen istemci
+- `index.html`: Örnek HTML dosyası
+
+---
 
 ## Nasıl Çalıştırılır?
 
-### 1️⃣ Web Sunucusunu Başlat
-**Tek İş Parçacıklı** veya **Çok İş Parçacıklı** sunucudan birini seçin.
+### 🔹 1. Web Sunucusunu Başlat
+İki sunucudan birini seç:
 
-#### **Tek İş Parçacıklı Sunucu**
-```sh
-python webserver.py
+**Tek İş Parçacıklı:**
+```bash
+python3 webserver.py
+```
 
-✅ Başarılı çalışırsa şu mesajı görmelisiniz:
+**Çok İş Parçacıklı:**
+```bash
+python3 multithreaded_webserver.py
+```
 
-Web server is running...
+✅ Beklenen çıktı:
+```
+Web sunucusu çalışıyor...
+```
 
-#### **Çok İş Parçacıklı Sunucu**
+---
 
-python multithreaded_webserver.py
+### 🔹 2. Web İstemcisini Çalıştır
 
-✅ Başarılı çalışırsa şu mesajı görmelisiniz:
+İstemciden örnek bir dosya isteği gönder:
+```bash
+python3 webclient.py index.html
+```
 
-Multithreaded Web Server is running...
+Eksik dosya isteği:
+```bash
+python3 webclient.py yok.html
+```
 
-2️⃣ Web İstemcisini Kullan
-Varsayılan olarak index.html isteği göndermek için:
-
-python webclient.py index.html
-Belirli bir dosya talep etmek için:
-
-python webclient.py test.html
-Mevcut olmayan bir dosya talep ettiğinizde:
-
-python webclient.py missing.html
-✅ Beklenen Yanıt:
-
+✅ Beklenen yanıt:
+```
 HTTP/1.1 404 Not Found
-Content-Type: text/html; charset=utf-8
+```
 
-<h1>404 Not Found</h1><p>File not found.</p>
+---
+
+## Kullanılan IP Adresi
+
+Mininet ortamında çalıştığınız için `127.0.0.1` yerine sunucunun gerçek IP adresini (örneğin `10.0.0.1`) kullanmalısınız. Bu IP'yi `ifconfig` komutuyla öğrenebilirsiniz.
+
+---
+
+## Not
+
+- Tüm kodlar yorum satırlarıyla açıklanmıştır.
+- Hatalar `try/except` blokları ile yakalanır.
